@@ -1,5 +1,6 @@
 /**
  * Glass Falling
+ * Nelson Zeas
  */
 public class GlassFalling {
 
@@ -43,9 +44,33 @@ public class GlassFalling {
 
   // Optional:
   // Pick whatever parameters you want to, just make sure to return an int.
-  public int glassFallingMemoized() {
-    // Fill in here and change the return
-    return 0;
+  public int glassFallingMemoized(int floors, int sheets, int [][] glassTable) {
+
+    if( glassTable[floors-1][sheets-1] != 0 ){
+      return glassTable[floors-1][sheets-1];
+    }
+
+    if( floors <= 1 || sheets == 1 ){
+      return floors;
+    }
+
+
+    glassTable[floors-1][sheets-1] = floors;
+    int result = floors;
+    for( int i = 1; i < floors; i++){
+
+      int num1 = glassFallingMemoized(i, sheets-1, glassTable);
+      int num2 = glassFallingMemoized(floors-i, sheets, glassTable) + 1;
+
+      result   = Integer.max(num1, num2); 
+
+      if(result < glassTable[floors-1][sheets-1]){
+        glassTable[floors-1][sheets-1] = result;
+      }
+
+    }
+
+    return glassTable[floors-1][sheets-1]+1;
   }
 
 
@@ -87,20 +112,10 @@ public class GlassFalling {
 
       }
     }
-
-    
     return glassTable[floors-1][sheets-1];
   }
 
 
-  public void printarr(int[][] arr ){
-    for(int i = 0; i < arr.length; i++){
-      for(int j = 0; j < arr[i].length; j++){
-        System.out.print(arr[i][j] + " ");
-      }
-      System.out.println();
-    }
-  }
 
   public static void main(String args[]){
       GlassFalling gf = new GlassFalling();
@@ -109,9 +124,11 @@ public class GlassFalling {
       // in your final turned-in copy, these are the only things printed
       int minTrials1Recur  = gf.glassFallingRecur(27, 2);
       int minTrials1Bottom = gf.glassFallingBottomUp(27, 2);
-      //int minTrials2Recur  = gf.glassFallingRecur(100, 3);
 
-      int minTrials2Memo = gf.glassFallingMemoized(100, 3, third parameter);
+
+      //int minTrials2Recur  = gf.glassFallingRecur(100, 3);  //kills laptop
+
+      int minTrials2Memo = gf.glassFallingMemoized(100, 3, new int [100][3]);
       int minTrials2Bottom = gf.glassFallingBottomUp(100, 3);
 
 

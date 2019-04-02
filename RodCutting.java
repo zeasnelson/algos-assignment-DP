@@ -1,4 +1,13 @@
+/*
+* Rod cutting
+* Nelson Zeas
+*/
+
+
+
+
 /**
+
  * Rod cutting problem described in Chapter 15 of textbook
  */
 public class RodCutting {
