@@ -28,7 +28,7 @@ If only one glass sheet is available and we want to be absolutely sure of gettin
 
 (The problem is not actually to find the critical floor, but just to decide floors from which glass sheets should be dropped so that total number of trials are minimized.)
 
-##### (a) Describe the optimal substructure/recurrence that would lead to a recursive solution
+#### (a) Describe the optimal substructure/recurrence that would lead to a recursive solution
 #### (b) Draw recurrence tree for given (floors = 4, sheets = 2)
 #### (c) Code your recursive solution under GlassFallingRecur(int n numFloors, int m numGlass)
 #### (d) How many distinct subproblems do you end up with given 4 floors and 2 sheets?
